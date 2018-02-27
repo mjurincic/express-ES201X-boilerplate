@@ -1,4 +1,4 @@
-# Express.js [ES2017](https://www.bram.us/2017/07/18/es2017-es8-language-features/)/[ES2018](https://www.bram.us/2018/01/30/whats-new-in-ecmascript2018/) Boilerplate
+# Express.js with Babel Boilerplate
 
 ### Features:
 - [Express.js](https://expressjs.com/) as the web framework.
