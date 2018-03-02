@@ -2,14 +2,25 @@ import express from 'express';
 import path from 'path';
 import logger from 'morgan';
 import bodyParser from 'body-parser';
+import handlebars from 'handlebars';
+import layouts from 'handlebars-layouts';
+import handlebarsWax from 'handlebars-wax';
+
 import routes from './routes';
 
+// Initialize express web app.
 const app = express();
+// Obscure for security.
 app.disable('x-powered-by');
 
 // View engine setup
+const wax = handlebarsWax(handlebars)
+  .partials('views/layouts/**/*.{hbs,js}')
+  .partials('views/partials/**/*.{hbs,js}')
+  .helpers(layouts);
+app.engine('hbs', wax.engine);
+app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, '../views'));
-app.set('view engine', 'pug');
 
 app.use(
   logger('dev', {
@@ -33,7 +44,7 @@ app.use((req, res, next) => {
 // Error handler
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
-  res.status(err.status || 500).render('error', {
+  res.status(err.status || 500).render('pages/error', {
     message: err.message
   });
 });

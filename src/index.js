@@ -1,5 +1,5 @@
-import 'dotenv-extended/config';
+import config from './config';
 import app from './app';
 
-const { PORT = 8080 } = process.env;
-app.listen(PORT, () => console.log(`Listening on port ${PORT}`)); // eslint-disable-line no-console
+const { server: { port } } = config;
+app.listen(port, () => console.log(`Listening on port ${port}`)); // eslint-disable-line no-console

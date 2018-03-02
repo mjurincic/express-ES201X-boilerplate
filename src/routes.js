@@ -6,7 +6,7 @@ const routes = Router();
  * GET home page
  */
 routes.get('/', (req, res) => {
-  res.render('index', { title: 'Express ES2018!' });
+  res.render('pages/index', { title: 'Express ES2018' });
 });
 
 /**
@@ -30,7 +30,7 @@ routes.get('/list', (req, res, next) => {
     return;
   }
 
-  res.render('index', { title });
+  res.render('pages/index', { title });
 });
 
 export default routes;
