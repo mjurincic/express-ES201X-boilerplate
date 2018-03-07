@@ -1,9 +1,0 @@
-{
-  "testEnvironment": "node",
-  "verbose": true,
-  "^.+\\.js?$": "babel-jest",
-  "testPathIgnorePatterns": [
-    "/node_modules/",
-    "/views/layouts/*.hbs"
-  ]
-}

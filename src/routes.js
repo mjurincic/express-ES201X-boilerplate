@@ -6,7 +6,7 @@ const routes = Router();
  * GET home page
  */
 routes.get('/', (req, res) => {
-  res.render('pages/index', { title: 'Express ES2018' });
+  res.render('pages/index', { title: 'Express ES8 hbs' });
 });
 
 /**

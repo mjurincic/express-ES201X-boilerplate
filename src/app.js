@@ -6,18 +6,16 @@ import hbs from 'hbs';
 import layouts from 'handlebars-layouts';
 import routes from './routes';
 
-var hbsutils = require('hbs-utils')(hbs);
-
-// Initialize express web app.
 const app = express();
-// Obscure for security.
 app.disable('x-powered-by');
+
+// // View engine setup
+// app.set('views', path.join(__dirname, '../views'));
+// app.set('view engine', 'pug');
 
 // view engine setup
 hbs.registerHelper(layouts(hbs.handlebars));
-hbsutils.registerPartials(path.join(__dirname, '../views/layouts'), {
-  precompile: true
-});
+hbs.registerPartials(path.join(__dirname, '../views/layouts'));
 app.set('views', path.join(__dirname, '../views'));
 app.set('view engine', 'hbs');
 app.engine('html', hbs.__express);
@@ -44,6 +42,7 @@ app.use((req, res, next) => {
 // Error handler
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
+  // eslint-disable-line no-unused-vars
   res.status(err.status || 500).render('pages/error', {
     message: err.message
   });
