@@ -1,4 +1,5 @@
 import joi from 'joi';
+
 // Load environment variables from the `.env` file.
 import 'dotenv/config';
 

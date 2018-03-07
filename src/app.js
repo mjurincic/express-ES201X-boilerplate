@@ -2,25 +2,25 @@ import express from 'express';
 import path from 'path';
 import logger from 'morgan';
 import bodyParser from 'body-parser';
-import handlebars from 'handlebars';
+import hbs from 'hbs';
 import layouts from 'handlebars-layouts';
-import handlebarsWax from 'handlebars-wax';
-
 import routes from './routes';
+
+var hbsutils = require('hbs-utils')(hbs);
 
 // Initialize express web app.
 const app = express();
 // Obscure for security.
 app.disable('x-powered-by');
 
-// View engine setup
-const wax = handlebarsWax(handlebars)
-  .partials('views/layouts/**/*.{hbs,js}')
-  .partials('views/partials/**/*.{hbs,js}')
-  .helpers(layouts);
-app.engine('hbs', wax.engine);
-app.set('view engine', 'hbs');
+// view engine setup
+hbs.registerHelper(layouts(hbs.handlebars));
+hbsutils.registerPartials(path.join(__dirname, '../views/layouts'), {
+  precompile: true
+});
 app.set('views', path.join(__dirname, '../views'));
+app.set('view engine', 'hbs');
+app.engine('html', hbs.__express);
 
 app.use(
   logger('dev', {

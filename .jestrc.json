@@ -1,4 +1,9 @@
 {
   "testEnvironment": "node",
-  "collectCoverage": true
+  "verbose": true,
+  "^.+\\.js?$": "babel-jest",
+  "testPathIgnorePatterns": [
+    "/node_modules/",
+    "/views/layouts/*.hbs"
+  ]
 }
