@@ -21,12 +21,36 @@ const envVarsSchema = joi
       .truthy('true')
       .falsy('FALSE')
       .falsy('false')
-      .default(true)
+      .default(true),
+    SMTP_HOST: joi
+      .string()
+      .hostname()
+      .trim()
+      .required(),
+    SMTP_PORT: joi.number().required(),
+    SMTP_SECURE: joi
+      .boolean()
+      .truthy('TRUE')
+      .truthy('true')
+      .falsy('FALSE')
+      .falsy('false'),
+    SMTP_IGNORE_TLS: joi
+      .boolean()
+      .truthy('TRUE')
+      .truthy('true')
+      .falsy('FALSE')
+      .falsy('false'),
+    SMTP_USER: joi.string().alphanum(),
+    SMTP_PASS: joi.string(),
+    SMTP_DEFAULT_FROM: joi.string().email()
   })
-  .unknown()
   .required();
 
-const { error, value: envVars } = joi.validate(process.env, envVarsSchema);
+const { error, value: envVars } = joi.validate(process.env, envVarsSchema, {
+  abortEarly: false,
+  convert: true,
+  allowUnknown: true
+});
 if (error) {
   throw new Error(`Environment variables validation error: ${error.message}`);
 }
