@@ -11,6 +11,7 @@
     "start": "node build/index.js",
     "build": "npm run clean && mkdir -p build && babel src -s -D -d build",
     "test": "jest --watch",
+    "coverage": "jest",
     "precommit": "lint-staged",
     "prestart": "npm run -s build",
     "dev": "nodemon src/index.js --exec \"node -r babel-register\"",
@@ -103,7 +104,8 @@
     }
   },
   "jest": {
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "collectCoverage": true
   },
   "prettier": {
     "singleQuote": true
