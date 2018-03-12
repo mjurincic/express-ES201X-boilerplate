@@ -18,6 +18,7 @@ hbs.registerHelper(layouts(hbs.handlebars));
 hbs.registerPartials(path.join(__dirname, '../views/layouts'));
 app.set('views', path.join(__dirname, '../views'));
 app.set('view engine', 'hbs');
+app.set('view options', { layout: false });
 app.engine('html', hbs.__express);
 
 app.use(
