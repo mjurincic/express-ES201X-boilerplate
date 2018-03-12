@@ -10,10 +10,11 @@
   "scripts": {
     "start": "node build/index.js",
     "build": "npm run clean && mkdir -p build && babel src -s -D -d build",
-    "test": "jest --watch",
-    "coverage": "jest",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage && open coverage/lcov-report/index.html",
     "precommit": "lint-staged",
-    "prestart": "npm run -s build",
+    "prestart": "npm run build",
     "dev": "nodemon src/index.js --exec \"node -r babel-register\"",
     "clean": "rimraf build",
     "lint": "esw -w src test",
@@ -104,8 +105,7 @@
     }
   },
   "jest": {
-    "testEnvironment": "node",
-    "collectCoverage": true
+    "testEnvironment": "node"
   },
   "prettier": {
     "singleQuote": true
