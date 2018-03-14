@@ -5,13 +5,10 @@ import bodyParser from 'body-parser';
 import hbs from 'hbs';
 import layouts from 'handlebars-layouts';
 import routes from './routes';
+import './config';
 
 const app = express();
 app.disable('x-powered-by');
-
-// // View engine setup
-// app.set('views', path.join(__dirname, '../views'));
-// app.set('view engine', 'pug');
 
 // view engine setup
 hbs.registerHelper(layouts(hbs.handlebars));
