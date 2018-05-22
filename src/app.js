@@ -4,8 +4,9 @@ import logger from 'morgan';
 import bodyParser from 'body-parser';
 import hbs from 'hbs';
 import layouts from 'handlebars-layouts';
-import routes from './routes';
-import './config';
+
+import index from './routes/index';
+import about from './routes/about';
 
 const app = express();
 app.disable('x-powered-by');
@@ -24,11 +25,12 @@ app.use(
   })
 );
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '../public')));
 
 // Routes
-app.use('/', routes);
+app.use('/', index);
+app.use('/about', about);
 
 // Catch 404 and forward to error handler
 app.use((req, res, next) => {

@@ -1,16 +1,9 @@
 import { Router } from 'express';
 
-const routes = Router();
+const router = Router();
 
 /**
- * GET home page
- */
-routes.get('/', (req, res) => {
-  res.render('pages/index', { title: 'Express ES8 hbs' });
-});
-
-/**
- * GET /list
+ * GET /about
  *
  * This is a sample route demonstrating
  * a simple approach to error handling and testing
@@ -18,7 +11,7 @@ routes.get('/', (req, res) => {
  * create different/better error handlers depending on
  * your use case.
  */
-routes.get('/list', (req, res, next) => {
+router.get('/', (req, res, next) => {
   const { title } = req.query;
 
   if (title == null || title === '') {
@@ -30,7 +23,7 @@ routes.get('/list', (req, res, next) => {
     return;
   }
 
-  res.render('pages/index', { title });
+  res.render('pages/about', { title });
 });
 
-export default routes;
+export default router;

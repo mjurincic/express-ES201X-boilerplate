@@ -11,6 +11,11 @@ const envVarsSchema = joi
       .valid(['development', 'production', 'test', 'provision'])
       .required(),
     PORT: joi.number().required(),
+    HOST: joi
+      .string()
+      .hostname()
+      .trim()
+      .default('localhost'),
     LOGGER_LEVEL: joi
       .string()
       .valid(['error', 'warn', 'info', 'verbose', 'debug', 'silly'])
@@ -64,7 +69,8 @@ const config = {
     enabled: envVars.LOGGER_ENABLED
   },
   server: {
-    port: envVars.PORT
+    port: envVars.PORT,
+    host: envVars.HOST
   }
   // ...
 };

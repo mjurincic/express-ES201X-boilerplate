@@ -1,16 +1,15 @@
 import address from 'address';
 import app from './app';
+import config from './config';
 
-const { HOST = '0.0.0.0' } = process.env;
-const { PORT = 3000 } = process.env;
-let localUrlForTerminal = `http://${HOST}:${PORT}/`;
-let lanUrlForTerminal = `http://${HOST}:${PORT}/`;
+let localUrlForTerminal = `http://${config.server.host}:${config.server.port}/`;
+let lanUrlForTerminal = `http://${config.server.host}:${config.server.port}/`;
 // If in local environment override
-if (HOST === '0.0.0.0' || HOST === '::') {
-  localUrlForTerminal = `http://localhost:${PORT}/`;
-  lanUrlForTerminal = `http://${address.ip()}:${PORT}/`;
+if (config.server.host === 'localhost') {
+  localUrlForTerminal = `http://${config.server.host}:${config.server.port}/`;
+  lanUrlForTerminal = `http://${address.ip()}:${config.server.port}/`;
 }
-app.listen(PORT, () =>
+app.listen(config.server.port, () =>
   // eslint-disable-next-line no-console
   console.log(`
 Access URLs:
