@@ -3,34 +3,30 @@ import app from '../src/app.js';
 
 describe('GET /', () => {
   it('should render properly', async () => {
-    await request(app)
-      .get('/')
-      .expect(200);
+    const response = await request(app).get('/');
+    expect(response.status).toEqual(200);
   });
 });
 
-describe('GET /list', () => {
+describe('GET /about', () => {
   it('should render properly with valid parameters', async () => {
-    await request(app)
-      .get('/list')
-      .query({ title: 'List title' })
-      .expect(200);
+    const response = await request(app)
+      .get('/about')
+      .query({ title: 'List title' });
+    expect(response.status).toEqual(200);
   });
 
   it('should error without a valid parameter', async () => {
-    await request(app)
-      .get('/list')
-      .expect(500);
+    const response = await request(app).get('/about');
+    expect(response.status).toEqual(500);
   });
 });
 
 describe('GET /404', () => {
   it('should return 404 for non-existent URLs', async () => {
-    await request(app)
-      .get('/404')
-      .expect(404);
-    await request(app)
-      .get('/notfound')
-      .expect(404);
+    const response1 = await request(app).get('/404');
+    expect(response1.status).toEqual(404);
+    const response2 = await request(app).get('/notfound');
+    expect(response2.status).toEqual(404);
   });
 });

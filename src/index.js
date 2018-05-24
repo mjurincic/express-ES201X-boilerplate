@@ -5,7 +5,7 @@ import config from './config';
 let localUrlForTerminal = `http://${config.server.host}:${config.server.port}/`;
 let lanUrlForTerminal = `http://${config.server.host}:${config.server.port}/`;
 // If in local environment override
-if (config.server.host === 'localhost') {
+if (config.server.host === 'localhost' && config.isDevelopment) {
   localUrlForTerminal = `http://${config.server.host}:${config.server.port}/`;
   lanUrlForTerminal = `http://${address.ip()}:${config.server.port}/`;
 }

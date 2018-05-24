@@ -2,6 +2,7 @@ import express from 'express';
 import path from 'path';
 import logger from 'morgan';
 import bodyParser from 'body-parser';
+import fs from 'fs';
 import hbs from 'hbs';
 import layouts from 'handlebars-layouts';
 
@@ -13,7 +14,11 @@ app.disable('x-powered-by');
 
 // view engine setup
 hbs.registerHelper(layouts(hbs.handlebars));
-hbs.registerPartials(path.join(__dirname, '../views/layouts'));
+const mainLayout = fs.readFileSync(
+  '/Users/mauro/WebstormProjects/express-ES2018/views/layouts/main.hbs',
+  'utf8'
+);
+hbs.registerPartial('main', mainLayout);
 app.set('views', path.join(__dirname, '../views'));
 app.set('view engine', 'hbs');
 app.set('view options', { layout: false });
@@ -42,7 +47,6 @@ app.use((req, res, next) => {
 // Error handler
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
-  // eslint-disable-line no-unused-vars
   res.status(err.status || 500).render('pages/error', {
     message: err.message
   });
