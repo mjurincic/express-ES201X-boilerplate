@@ -8,6 +8,7 @@ import layouts from 'handlebars-layouts';
 
 import index from './routes/index';
 import about from './routes/about';
+import login from './routes/login';
 
 const app = express();
 app.disable('x-powered-by');
@@ -32,19 +33,20 @@ app.use(
 );
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, '../public')));
+app.use('/assets', express.static(path.join(__dirname, '../assets')));
 app.use(
-  '/jquery',
+  '/assets/lib/jquery',
   express.static(path.join(__dirname, '../node_modules/jquery/dist/'))
 );
 app.use(
-  '/bootstrap',
+  '/assets/lib/bootstrap',
   express.static(path.join(__dirname, '../node_modules/bootstrap/dist'))
 );
 
 // Routes
 app.use('/', index);
 app.use('/about', about);
+app.use('/login', login);
 
 // Catch 404 and forward to error handler
 app.use((req, res, next) => {

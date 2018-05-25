@@ -1,0 +1,60 @@
+{{#extend "main"}}
+  {{#content "body"}}
+      <div id="login" class="row">
+
+        <div class="col-xs-12 col-sm-6 col-sm-offset-3 login">
+          <div class="content">
+
+            <div class="login-rightMs">
+              <a href="/auth/azuread" class="btn btn-block btn-lg btn-social btn-github">
+                <i class="fa fa-windows"></i>
+                <span>Log in with Microsoft Account (Office 365)</span>
+              </a>
+            </div>
+
+
+            <div class="login-rightOr">
+              <hr class="hrOr">
+              <span class="spanOr">or</span>
+            </div>
+
+            <form class="login-rightForm" action="" method="POST">
+
+              <div class="form-group">
+                <label for="user_email" class="control-label">Email Address</label>
+                <input type="email" name="email" value="" class="form-control input-lg" id="user_email"
+                       placeholder="Email"
+                       autofocus="autofocus">
+              </div>
+
+              <div class="form-group">
+                <label for="user_password" class="control-label">Password</label>
+                <input type="password" name="password" value="" class="form-control input-lg" id="user_password"
+                       placeholder="Password"
+                       autofocus="autofocus">
+              </div>
+
+              <div class="form-group">
+                <div class="checkbox pull-left">
+                  <label>
+                    <input type="checkbox" value="1" name="remember_me"> Remember Me
+                  </label>
+                </div>
+                <div class="pull-right">
+                  <a href="/forgot_password" class="btn btn-link">Forgot your password?</a>
+                </div>
+                <div class="clearfix"></div>
+
+              </div>
+
+              <button class="btn btn-block btn-lg btn-social btn-linkedin" type="submit">
+                <i class="fa fa-sign-in"></i>
+                <span>Log in with BOSS Account</span>
+              </button>
+
+            </form>
+          </div>
+        </div>
+      </div>
+  {{/content}}
+{{/extend}}

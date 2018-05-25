@@ -4,17 +4,23 @@ html {
 }
 body {
   margin-bottom: 60px;
+  background: #1f1f1f;
 }
 body > .container {
-  padding: 60px 15px 0;
+  padding: 185px 15px 0;
 }
 .brand {
-  position: absolute;
-  left: 50%;
-  margin-left: -50px !important;  /* 50% of your logo width */
-  display: block;
+ width: 223px;
 }
-
+.navbar{
+  height: 95px;
+  background: #000000;
+  border-color: white;
+}
+.login{
+  padding: 30px;
+  background: #fafafa;
+}
 /* Sticky footer styles
 -------------------------------------------------- */
 .footer {
