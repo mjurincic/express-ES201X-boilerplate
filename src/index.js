@@ -1,6 +1,6 @@
 import address from 'address';
 import app from './app';
-import config from './config';
+import config from './config/config';
 
 let localUrlForTerminal = `http://${config.server.host}:${config.server.port}/`;
 let lanUrlForTerminal = `http://${config.server.host}:${config.server.port}/`;

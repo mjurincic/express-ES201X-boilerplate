@@ -15,9 +15,10 @@ app.disable('x-powered-by');
 // view engine setup
 hbs.registerHelper(layouts(hbs.handlebars));
 const mainLayout = fs.readFileSync(
-  '/Users/mauro/WebstormProjects/express-ES2018/views/layouts/main.hbs',
-  'utf8'
+  path.join(__dirname, '../views/layouts/main.hbs'),
+  'utf-8'
 );
+
 hbs.registerPartial('main', mainLayout);
 app.set('views', path.join(__dirname, '../views'));
 app.set('view engine', 'hbs');
@@ -32,6 +33,14 @@ app.use(
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '../public')));
+app.use(
+  '/jquery',
+  express.static(path.join(__dirname, '../node_modules/jquery/dist/'))
+);
+app.use(
+  '/bootstrap',
+  express.static(path.join(__dirname, '../node_modules/bootstrap/dist'))
+);
 
 // Routes
 app.use('/', index);
